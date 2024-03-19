@@ -19,8 +19,72 @@ insert into employee(ssn,fname,lname,address,sex,salary) values ('1js21ai004','D
 insert into employee(ssn,fname,lname,address,sex,salary) values ('1js21ai005','E','scott','banglore','m',850000);
 insert into employee(ssn,fname,lname,address,sex,salary) values ('1js21ai006','F','scott','banglore','m',250000);
 
-insert into department (dno,dname,mgstartdate) values (1,'account','2017-01-24');
-insert into department (dno,dname,mgstartdate) values (2,'account','2017-01-24');
-insert into department (dno,dname,mgstartdate) values (4,'account','2017-01-24');
-insert into department (dno,dname,mgstartdate) values (5,'account','2017-01-24');
+insert into department values (1,'account','2017-01-24','1js21ai001');
+insert into department values (2,'account','2017-01-24','1js21ai002');
+insert into department  values (4,'account','2017-01-24','1js21ai003');
+insert into department  values (5,'account','2017-01-24','1js21ai003');
 
+update employee set superssn = null , dno= '5' where ssn='1js21ai001';
+update employee set superssn = '1js21ai001' , dno= '5' where ssn='1js21ai002';
+update employee set superssn = '1js21ai002' , dno= '5' where ssn='1js21ai003';
+update employee set superssn = '1js21ai003' , dno= '5' where ssn='1js21ai004';
+update employee set superssn = '1js21ai004' , dno= '5' where ssn='1js21ai005';
+update employee set superssn = '1js21ai005' , dno= '5' where ssn='1js21ai006';
+
+insert into dlocation values ('1', 'BANGALORE');
+insert into dlocation values ('2', 'BANGALORE');
+insert into dlocation values ('4', 'BANGALORE');
+insert into dlocation values ('5', 'BANGALORE');
+
+INSERT INTO PROJECT VALUES (100,'5', 'IOT','BANGALORE');
+INSERT INTO PROJECT VALUES (101,'5','CLOUD','BANGALORE');
+INSERT INTO PROJECT VALUES (102,'5', 'BIGDATA','BANGALORE');
+INSERT INTO PROJECT VALUES (103,'1','SENSORS','BANGALORE');
+
+INSERT INTO WORKS_ON VALUES (4, '1js21ai001', 103);
+INSERT INTO WORKS_ON VALUES (6, '1js21ai002', 101);
+INSERT INTO WORKS_ON VALUES (8, '1js21ai003', 102);
+INSERT INTO WORKS_ON VALUES (10, '1js21ai004', 100);
+INSERT INTO WORKS_ON VALUES (3, '1js21ai005', 103);
+
+
+1.
+SELECT DISTINCT P.PNO
+FROM PROJECT P, DEPARTMENT D, EMPLOYEE E
+WHERE P.DNO=D.DNO AND
+D.MGRSSN=E.SSN AND
+E.LNAME='SCOTT'
+UNION
+SELECT DISTINCT W.PNO
+FROM WORKS_ON W, EMPLOYEE E1
+WHERE E1.SSN=W.SSN AND
+E1.LNAME='SCOTT';
+
+2.
+SELECT E.FNAME, E.LNAME, 1.1*E.SALARY AS INCR_SAL
+FROM EMPLOYEE E, WORKS_ON W, PROJECT P
+WHERE E.SSN=W.SSN AND
+W.PNO=P.PNO AND
+P.PNAME='IOT';
+
+3.
+SELECT SUM(E.SALARY), MAX(E.SALARY), MIN(E.SALARY), AVG(E.SALARY)
+FROM EMPLOYEE E, DEPARTMENT D
+WHERE E.DNO=D.DNO AND
+D.DNAME='ACCOUNT';
+
+4.
+
+
+
+
+
+5.
+SELECT E.DNO, COUNT(E.SSN) as "No. oF Employees"
+FROM EMPLOYEE E
+WHERE E.SALARY > 600000 AND
+E.DNO IN (SELECT E1.DNO
+FROM EMPLOYEE E1
+GROUP BY E1.DNO
+HAVING COUNT(E1.DNO) > 5 )
+GROUP BY E.DNO;
