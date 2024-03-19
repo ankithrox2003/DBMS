@@ -74,9 +74,7 @@ WHERE E.DNO=D.DNO AND
 D.DNAME='ACCOUNT';
 
 4.
-
-
-
+select FName from EMPLOYEE where not exists (select PNo from PROJECT where DNo = 5 except select PNo from WORKS_ON where SSN = EMPLOYEE.SSN);
 
 
 5.
