@@ -1,0 +1,26 @@
+create table department(dno varchar(20) primary key,dname varchar(20),mgstartdate date);
+
+create table employee(ssn varchar(20) primary key,superssn varchar(20),dno varchar(20),fname
+varchar(20),lname varchar(20),address varchar(20),sex varchar(20),salary int,foreign key(superssn)references employee (ssn),foreign key (dno)references department (dno));
+
+alter table department add mgrssn varchar(20)references employee (ssn);
+
+create table Dlocation(dno varchar(20),dloc varchar(20),primary key(dno,dloc),foreign key(dno)references department (dno));
+
+create table project(pno int primary key,dno varchar(20),pname varchar(20),plocation varchar(20),foreign key (dno) references department (dno));
+
+create table works_on(hours int,ssn varchar(20),pno int,primary key(ssn,pno),foreign key(ssn)references employee(ssn),foreign key(pno)references project(pno));
+
+
+insert into employee(ssn,fname,lname,address,sex,salary) values ('1js21ai001','A','scott','banglore','m',450000);
+insert into employee(ssn,fname,lname,address,sex,salary) values ('1js21ai002','B','rama','banglore','f',40000);
+insert into employee(ssn,fname,lname,address,sex,salary) values ('1js21ai003','C','soma','banglore','f',460000);
+insert into employee(ssn,fname,lname,address,sex,salary) values ('1js21ai004','D','bheema','banglore','f',750000);
+insert into employee(ssn,fname,lname,address,sex,salary) values ('1js21ai005','E','scott','banglore','m',850000);
+insert into employee(ssn,fname,lname,address,sex,salary) values ('1js21ai006','F','scott','banglore','m',250000);
+
+insert into department (dno,dname,mgstartdate) values (1,'account','2017-01-24');
+insert into department (dno,dname,mgstartdate) values (2,'account','2017-01-24');
+insert into department (dno,dname,mgstartdate) values (4,'account','2017-01-24');
+insert into department (dno,dname,mgstartdate) values (5,'account','2017-01-24');
+
