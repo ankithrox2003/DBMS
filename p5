@@ -25,11 +25,11 @@ insert into department  values (4,'account','2017-01-24','1js21ai003');
 insert into department  values (5,'account','2017-01-24','1js21ai003');
 
 update employee set superssn = null , dno= '5' where ssn='1js21ai001';
-update employee set superssn = '1js21ai001' , dno= '5' where ssn='1js21ai002';
-update employee set superssn = '1js21ai002' , dno= '5' where ssn='1js21ai003';
+update employee set superssn = '1js21ai001' , dno= '2' where ssn='1js21ai002';
+update employee set superssn = '1js21ai002' , dno= '1' where ssn='1js21ai003';
 update employee set superssn = '1js21ai003' , dno= '5' where ssn='1js21ai004';
-update employee set superssn = '1js21ai004' , dno= '5' where ssn='1js21ai005';
-update employee set superssn = '1js21ai005' , dno= '5' where ssn='1js21ai006';
+update employee set superssn = '1js21ai004' , dno= '2' where ssn='1js21ai005';
+update employee set superssn = '1js21ai005' , dno= '4' where ssn='1js21ai006';
 
 insert into dlocation values ('1', 'BANGALORE');
 insert into dlocation values ('2', 'BANGALORE');
@@ -38,14 +38,17 @@ insert into dlocation values ('5', 'BANGALORE');
 
 INSERT INTO PROJECT VALUES (100,'5', 'IOT','BANGALORE');
 INSERT INTO PROJECT VALUES (101,'5','CLOUD','BANGALORE');
-INSERT INTO PROJECT VALUES (102,'5', 'BIGDATA','BANGALORE');
+INSERT INTO PROJECT VALUES (102,'2', 'BIGDATA','BANGALORE');
 INSERT INTO PROJECT VALUES (103,'1','SENSORS','BANGALORE');
 
-INSERT INTO WORKS_ON VALUES (4, '1js21ai001', 103);
+INSERT INTO WORKS_ON VALUES (4, '1js21ai001', 100);
+INSERT INTO WORKS_ON VALUES (4, '1js21ai001', 101);
 INSERT INTO WORKS_ON VALUES (6, '1js21ai002', 101);
-INSERT INTO WORKS_ON VALUES (8, '1js21ai003', 102);
+INSERT INTO WORKS_ON VALUES (8, '1js21ai003', 100);
+INSERT INTO WORKS_ON VALUES (8, '1js21ai003', 101);
 INSERT INTO WORKS_ON VALUES (10, '1js21ai004', 100);
 INSERT INTO WORKS_ON VALUES (3, '1js21ai005', 103);
+
 
 
 1.
@@ -74,8 +77,7 @@ WHERE E.DNO=D.DNO AND
 D.DNAME='ACCOUNT';
 
 4.
-select FName from EMPLOYEE where not exists (select PNo from PROJECT where DNo = 5 except select PNo from WORKS_ON where SSN = EMPLOYEE.SSN);
-
+select FName , LName from EMPLOYEE where not exists (select PNo from PROJECT where DNo = 5 except select PNo from WORKS_ON where SSN = EMPLOYEE.SSN);
 
 5.
 SELECT E.DNO, COUNT(E.SSN) as "No. oF Employees"
