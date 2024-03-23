@@ -1,0 +1,15 @@
+create database company;
+
+use company;
+
+create table department(dno int primary key,dname varchar(20),mgrstartdate date);
+
+create table employee(ssn varchar(20) primary key,superssn varchar(20),dno int,name varchar(20),address varchar(20),sex varchar(20),salary int,foreign key(superssn) references employee(ssn),foreign key(dno) references department(dno));
+
+alter table department add mgrssn varchar(20) references employee (ssn);
+
+create table dlocation(dno int ,dloc varchar(20), primary key(dno,dloc),foreign key(dno) references department(dno));
+
+create table project(pno int primary key, dname varchar(20),plocation varchar(20),dno int,foreign key(dno) references department(dno));
+
+create table works_on(ssn varchar(20), pno int,hours int,primary key(ssn,pno),foreign key(ssn) references employee(ssn),foreign key(pno) references project(pno));
