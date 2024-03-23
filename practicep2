@@ -1,1 +1,21 @@
+insert  into salesman values('1000','ankith','banglore',12);
+insert  into salesman values('1001','banki','banglore',13);
+insert  into salesman values('1002','trunki','banglore',14);
+insert  into salesman values('1003','monkey','banglore',15);
+insert  into salesman values('1004','donkey','banglore',16);
+
+insert into customer values('11','dama','banglore',3,'1001');
+insert into customer values('12','lama','banglore',4,'1001');
+insert into customer values('13','dgama','banglore',4,'1002');
+insert into customer values('14','fama','banglore',5,'1003');
+insert into customer values('15','nama','banglore',5,'1002');
+
+dint do this:
+------------------------
+insert into orders values(201,5000,'17-MAY-04','11','1002');
+insert into orders values(202,4000,'05-01-2017','12','1003');
+insert into orders values(203,57000,'04-01-2017','13','1004');
+insert into orders values(204,90900,'06-01-2017','12','1002');
+insert into orders values(205,8000,'05-01-2017','14','1002');
+-------------------------
 
