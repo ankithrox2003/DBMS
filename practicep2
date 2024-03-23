@@ -12,10 +12,19 @@ insert into customer values('15','nama','banglore',5,'1002');
 
 dint do this:
 ------------------------
-insert into orders values(201,5000,'17-MAY-04','11','1002');
-insert into orders values(202,4000,'05-01-2017','12','1003');
-insert into orders values(203,57000,'04-01-2017','13','1004');
-insert into orders values(204,90900,'06-01-2017','12','1002');
-insert into orders values(205,8000,'05-01-2017','14','1002');
+
+insert into orders values(201,5000,'2017-01-04','11','1002');
+insert into orders values(202,4000,'2017-02-04','12','1003');
+insert into orders values(203,57000,'2017-03-04','13','1004');
+insert into orders values(204,90900,'2017-04-04','12','1002');
+insert into orders values(205,8000,'2017-01-04','14','1002');
+
 -------------------------
 
+select grade, count(customer_id) from customer group by (grade) having grade > (select avg(grade) from customer where city='banglore');
+
+select salesman_id , name from salesman s where (select count(*) from customer c where c.salesman_id = s.salesman_id );
+
+select s.salesman_id,name,cust_name,commission from salesman s, customer c where s.city = c.city union select salesman_id,name,'no match',commission from salesman where not salesman.city in (select customer.city from customer) order by salesman_id;
+
+ create view highestorder as select o.ord_date,s.salesman_id,s.name from salesman s , orders o where s.salesman_id = o.salesman_id and o.purchase_amt = (select max(purchase_amt) from orders c where c.ord_date = o.ord_date);
