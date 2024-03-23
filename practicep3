@@ -1,1 +1,33 @@
-insert
+insert into actor values('101','AA','M');
+insert into actor values('102','BB','F');
+insert into actor values('103','CC','M');
+insert into actor values('104','DD','M');
+insert into actor values('105','EE','F');
+
+insert into director values('201','AB',9119119119);
+insert into director values('202','AC',9119119119);
+insert into director values('203','AD',9119119119);
+insert into director values('204','AE',9119119119);
+insert into director values('205','AF',9119119119);
+
+insert into movies values('301','haha','','eng','201');
+insert into movies values('302','haha','','eng','202');
+insert into movies values('303','haha','','eng','202');
+insert into movies values('304','haha','','eng','203');
+insert into movies values('305','haha','','eng','202');
+
+insert into movie_cast values('101','302','hero');
+insert into movie_cast values('102','302','heroin');
+insert into movie_cast values('102','303','hero');
+insert into movie_cast values('103','302','heroin');
+insert into movie_cast values('103','302','hero');
+
+
+insert into rating values('301',3);
+insert into rating values('302',3);
+insert into rating values('302',4);
+insert into rating values('303',5);
+insert into rating values('302',4);
+
+
+
