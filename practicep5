@@ -13,3 +13,11 @@ create table dlocation(dno int ,dloc varchar(20), primary key(dno,dloc),foreign 
 create table project(pno int primary key, dname varchar(20),plocation varchar(20),dno int,foreign key(dno) references department(dno));
 
 create table works_on(ssn varchar(20), pno int,hours int,primary key(ssn,pno),foreign key(ssn) references employee(ssn),foreign key(pno) references project(pno));
+
+insert into employee (ssn,name,address,sex,salary) values('ijs21a001','AA','banglore','M',100000);
+insert into employee (ssn,name,address,sex,salary) values('ijs21a002','AB','banglore','f',200000);
+insert into employee (ssn,name,address,sex,salary) values('ijs21a003','AC','banglore','M',300000);
+insert into employee (ssn,name,address,sex,salary) values('ijs21a004','AD','banglore','f',400000);
+insert into employee (ssn,name,address,sex,salary) values('ijs21a005','AE','banglore','M',500000);
+
+insert into department values ('');
