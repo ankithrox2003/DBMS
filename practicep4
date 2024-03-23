@@ -1,0 +1,13 @@
+create database college;
+
+use college;
+
+create table student(usn varchar(20) primary key,sname varchar(20),address varchar(20),phone real, gender varchar(20));
+
+create table semsec(ssid varchar(20) primary key,sem int,sec varchar(20));
+
+create table class(usn varchar(20),ssid varchar(20), primary key(usn,ssid),foreign key(usn) references student(usn),foreign key(ssid) references semsec(ssid));
+
+create table subject(subcode varchar(20) primary key,title varchar(20),sem int,credits int);
+
+create table iamarks(usn varchar(20),subcode varchar(20),ssid varchar(20),test1 int,test2 int,test3 int,finalia int,primary key(usn,subcode,ssid),foreign key(usn) references student(usn),foreign key(subcode) references subject(subcode),foreign key(ssid) references semsec(ssid));
