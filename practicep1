@@ -1,0 +1,53 @@
+create database library_database;
+use library_database;
+create table publisher(name varchar(20) primary key,address varchar(20),phone real);
+create table book(book_id varchar(20) primary key,title varchar(20),pub_name varchar(20),pub_year int,foreign key(pub_name)references publisher(name));
+create table book_author(book_id varchar(20),author_name varchar(20),foreign key(book_id) references book(book_id),primary key(book_id,author_name));
+
+
+
+insert into publisher values('rohini','banglore',9449524400);
+insert into publisher values('rohini','banglore',9449524400);
+insert into publisher values('ro','banglore',9449524400);
+insert into publisher values('to','banglore',9449524400);
+insert into publisher values('mo','banglore',9449524400);
+insert into publisher values('ro','banglore',9449524400);
+insert into publisher values('to','banglore',9449524400);
+insert into publisher values('co','banglore',9449524400);
+
+insert into book values('001','aa','rohini',2017);
+insert into book values('002','aa','ro',2018);
+insert into book values('003','aa','to',2019);
+insert into book values('004','aa','mo',2012);
+insert into book values('005','aa','co',1997);
+
+insert into book_author values('001','acca');
+insert into book_author values('002','acca');
+insert into book_author values('003','acca');
+insert into book_author values('004','acca');
+insert into book_author values('005','acca');
+
+insert into library_branch values('101','XYZ','banglore');
+insert into library_branch values('102','XYZ','banglore');
+insert into library_branch values('103','XYZ','banglore');
+insert into library_branch values('104','XYZ','banglore');
+insert into library_branch values('105','XYZ','banglore');
+
+
+insert into book_copies values('001','101',200);
+insert into book_copies values('002','102',300);
+insert into book_copies values('003','103',400);
+insert into book_copies values('004','104',500);
+insert into book_copies values('005','105',600);
+
+insert into card values('1001');
+insert into card values('1002');
+insert into card values('1003');
+insert into card values('1004');
+insert into card values('1005');
+
+insert into book_lending values('001','101','1001','01-jan-2017','01-jun-2021');
+insert into book_lending values('002','102','1002','01-jun-2017','02-mar-2021');
+insert into book_lending values('003','103','1003','01-jan-2017','05-mar-2021');
+insert into book_lending values('004','104','1004','01-jun-2017','13-mar-2021');
+insert into book_lending values('005','105','1005','01-feb-2017','22-mar-2021');
