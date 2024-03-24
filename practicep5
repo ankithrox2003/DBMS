@@ -4,7 +4,7 @@ use company;
 
 create table department(dno int primary key,dname varchar(20),mgrstartdate date);
 
-create table employee(ssn varchar(20) primary key,superssn varchar(20),dno int,name varchar(20),address varchar(20),sex varchar(20),salary int,foreign key(superssn) references employee(ssn),foreign key(dno) references department(dno));
+create table employee(ssn varchar(20) primary key,superssn varchar(20),dno int,fname varchar(20),lname varchar(20),address varchar(20),sex varchar(20),salary int,foreign key(superssn) references employee(ssn),foreign key(dno) references department(dno));
 
 alter table department add mgrssn varchar(20) references employee (ssn);
 
@@ -14,10 +14,29 @@ create table project(pno int primary key, dname varchar(20),plocation varchar(20
 
 create table works_on(ssn varchar(20), pno int,hours int,primary key(ssn,pno),foreign key(ssn) references employee(ssn),foreign key(pno) references project(pno));
 
-insert into employee (ssn,name,address,sex,salary) values('ijs21a001','AA','banglore','M',100000);
-insert into employee (ssn,name,address,sex,salary) values('ijs21a002','AB','banglore','f',200000);
-insert into employee (ssn,name,address,sex,salary) values('ijs21a003','AC','banglore','M',300000);
-insert into employee (ssn,name,address,sex,salary) values('ijs21a004','AD','banglore','f',400000);
-insert into employee (ssn,name,address,sex,salary) values('ijs21a005','AE','banglore','M',500000);
+insert into employee (ssn,fname,lname,address,sex,salary) values('ijs21a001','AA','scott','banglore','M',100000);
+insert into employee (ssn,fname,lname,address,sex,salary) values('ijs21a002','AB','scott','banglore','f',200000);
+insert into employee (ssn,fname,lname,address,sex,salary) values('ijs21a003','AC','scott','banglore','M',300000);
+insert into employee (ssn,fname,lname,address,sex,salary) values('ijs21a004','AD','routt','banglore','f',400000);
+insert into employee (ssn,fname,lname,address,sex,salary) values('ijs21a005','AE','mcott','banglore','M',500000);
 
-insert into department values ('');
+insert into department values (1,'account','2017-01-01','ijs21a001');
+insert into department values (2,'it','2017-01-01','ijs21a002');
+insert into department values (3,'cs','2017-01-01','ijs21a002');
+insert into department values (4,'tech','2017-01-01','ijs21a003');
+insert into department values (5,'ll','2017-01-01','ijs21a002');
+
+update employee set superssn = null,dno='3' where ssn='ijs21a001';
+update employee set superssn = null,dno='5' where ssn='ijs21a001';
+update employee set superssn = null,dno='5' where ssn='ijs21a001';
+update employee set superssn = null,dno='5' where ssn='ijs21a001';
+update employee set superssn = null,dno='1' where ssn='ijs21a001';
+
+
+
+
+
+
+
+
+
