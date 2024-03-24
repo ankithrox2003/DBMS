@@ -68,3 +68,4 @@ select sum(e.salary), max(e.salary), min(e.salary), avg(e.salary) from employee 
 
 select FName , LName from EMPLOYEE where not exists (select PNo from PROJECT where DNo = 5 except select PNo from WORKS_ON where SSN = EMPLOYEE.SSN);
 
+select e.dno, count(e.ssn) as 'no of employee' from employee e where e.salary>600000 and e.dno in(select e1.dno from employee e1 group by e1.dno having count(e1.dno)>5)group by e.dno;
