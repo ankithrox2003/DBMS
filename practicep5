@@ -27,16 +27,33 @@ insert into department values (4,'tech','2017-01-01','ijs21a003');
 insert into department values (5,'ll','2017-01-01','ijs21a002');
 
 update employee set superssn = null,dno='3' where ssn='ijs21a001';
-update employee set superssn = null,dno='5' where ssn='ijs21a001';
-update employee set superssn = null,dno='5' where ssn='ijs21a001';
-update employee set superssn = null,dno='5' where ssn='ijs21a001';
-update employee set superssn = null,dno='1' where ssn='ijs21a001';
+update employee set superssn = 'ijs21a001',dno='5' where ssn='ijs21a002';
+update employee set superssn = 'ijs21a002',dno='5' where ssn='ijs21a003';
+update employee set superssn = 'ijs21a003',dno='5' where ssn='ijs21a004';
+update employee set superssn = 'ijs21a004',dno='1' where ssn='ijs21a005';
 
+insert into dlocation values (1,'banglore');
+insert into dlocation values (2,'banglore');
+insert into dlocation values (3,'banglore');
+insert into dlocation values (4,'banglore');
+insert into dlocation values (5,'banglore');
 
+insert into project values (101,'iot','banglore',5);
+insert into project values (102,'iot','banglore',5);
+insert into project values (103,'iot','banglore',5);
+insert into project values (104,'iot','banglore',1);
+insert into project values (105,'iot','banglore',2);
 
+insert into works_on values ('ijs21a001',101,3);
+insert into works_on values ('ijs21a002',102,3);
+insert into works_on values ('ijs21a003',103,3);
+insert into works_on values ('ijs21a002',103,3);
+insert into works_on values ('ijs21a003',102,3);
 
+select p.pno from project p, employee e, department d where p.dno = d.dno and d.mgrssn = e.ssn and e.lname='scott' union select w.pno from works_on w, employee e1 where w.ssn = e1.ssn and e1.lname='scott';
 
+select e.fname,e.lname,1.1*e.salary as incr_salary from employee e, works_on w, project p where e.ssn = w.ssn and w.pno = p.pno and p.dname = 'iot';
 
+select sum(e.salary), max(e.salary), min(e.salary), avg(e.salary) from employee e, department d where e.dno = d.dno and d.dname='account';
 
-
-
+select e.fname,e.lname from employee e where not exists((select pno from project where dno=5) minus (select pno from works_on where e.ssn = ssn));
