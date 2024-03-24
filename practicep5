@@ -19,6 +19,14 @@ insert into employee (ssn,fname,lname,address,sex,salary) values('ijs21a002','AB
 insert into employee (ssn,fname,lname,address,sex,salary) values('ijs21a003','AC','scott','banglore','M',300000);
 insert into employee (ssn,fname,lname,address,sex,salary) values('ijs21a004','AD','routt','banglore','f',400000);
 insert into employee (ssn,fname,lname,address,sex,salary) values('ijs21a005','AE','mcott','banglore','M',500000);
+insert into employee (ssn,fname,lname,address,sex,salary) values('ijs21a006','AF','mcott','banglore','M',800000);
+
+insert into employee values('ijs21a007','ijs21a006',5,'AG','zcott','banglore','M',700000);
+insert into employee values('ijs21a008','ijs21a007',5,'AH','zcott','banglore','M',800000);
+insert into employee values('ijs21a009','ijs21a008',5,'AI','zcott','banglore','M',400000);
+insert into employee values('ijs21a010','ijs21a009',5,'AJ','zcott','banglore','M',300000);
+insert into employee values('ijs21a011','ijs21a010',5,'AK','zcott','banglore','M',660000);
+insert into employee values('ijs21a012','ijs21a011',5,'AL','zcott','banglore','M',750000);
 
 insert into department values (1,'account','2017-01-01','ijs21a001');
 insert into department values (2,'it','2017-01-01','ijs21a002');
@@ -45,7 +53,9 @@ insert into project values (104,'iot','banglore',1);
 insert into project values (105,'iot','banglore',2);
 
 insert into works_on values ('ijs21a001',101,3);
+insert into works_on values ('ijs21a002',101,3);
 insert into works_on values ('ijs21a002',102,3);
+insert into works_on values ('ijs21a001',102,3);
 insert into works_on values ('ijs21a003',103,3);
 insert into works_on values ('ijs21a002',103,3);
 insert into works_on values ('ijs21a003',102,3);
@@ -56,4 +66,5 @@ select e.fname,e.lname,1.1*e.salary as incr_salary from employee e, works_on w, 
 
 select sum(e.salary), max(e.salary), min(e.salary), avg(e.salary) from employee e, department d where e.dno = d.dno and d.dname='account';
 
-select e.fname,e.lname from employee e where not exists((select pno from project where dno=5) minus (select pno from works_on where e.ssn = ssn));
+select FName , LName from EMPLOYEE where not exists (select PNo from PROJECT where DNo = 5 except select PNo from WORKS_ON where SSN = EMPLOYEE.SSN);
+
